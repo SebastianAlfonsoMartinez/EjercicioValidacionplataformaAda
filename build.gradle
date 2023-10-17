@@ -17,3 +17,13 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+task adaSubmit(type: Exec) {
+    environment "JAVA_HOME", "${System.properties['java.home']}"
+
+    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+        commandLine 'ada-client.exe', 'submit'
+    } else {
+        commandLine './ada-client', 'submit'
+    }
+}
